@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded",function(){
     for (let button of buttons){
         button.addEventListener("click",function() {
             if(this.getAttribute("data-type") === "submit"){
-                alert("You clicked Submit!");
+                checkAnswer();
             } else {
                 let gameType = this.getAttribute("data-type");
                 runGame(gameType);
@@ -33,12 +33,44 @@ function runGame(gameType){
     }
 
 }
-
+/**
+ * check the answer against the firs element in the returned
+ * calculateCorrectAnswer array
+ */
 function checkAnswer(){
+    let userAnswer = parseInt(document.getElementById("answer-box").value);
+    let calculatedAnswer = calculateCorrectAnswer(); 
+    let isCorrect = userAnswer === calculatedAnswer[0];
+
+    if (isCorrect){
+        alert("Bravo!!!");        
+    }else{
+        alert(`Answered ${userAnswer}, the correct answer war ${calculatedAnswer[0]}`);
+    }
+/**
+ * this will run a game of the same type of the last played
+ */
+    runGame(calculatedAnswer[1]);
 
 }
-
+/**
+ * Get the operands and the operator 
+ * directly from dom and check correct answer
+ */
 function calculateCorrectAnswer(){
+  
+    let operand1 = parseInt(document.getElementById("operand1").innerText);
+    let operand2 = parseInt(document.getElementById("operand2").innerText);
+    let operator = document.getElementById("operator").innerText;
+
+    
+    if(operator === "+"){
+        return[ operand1 + operand2, "addition"];        
+    }else{
+        alert(`Uninplemented operator ${operator}`);
+        throw `Uninplemented operator ${operator}. Aborting!`;
+    }
+
 
 }
 
