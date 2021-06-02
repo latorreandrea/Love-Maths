@@ -43,9 +43,11 @@ function checkAnswer(){
     let isCorrect = userAnswer === calculatedAnswer[0];
 
     if (isCorrect){
-        alert("Bravo!!!");        
+        alert("Bravo!!!");
+        incrementScore();        
     }else{
         alert(`Answered ${userAnswer}, the correct answer war ${calculatedAnswer[0]}`);
+        incrementWrongAnswer();
     }
 /**
  * this will run a game of the same type of the last played
@@ -73,13 +75,20 @@ function calculateCorrectAnswer(){
 
 
 }
-
+/**
+ * get the score from DOM and increment by 1 
+ */
 function incrementScore(){
+    let oldScore = document.getElementById("score").innerText;
+    document.getElementById("score").innerText = ++oldScore;
 
 }
-
+/**
+ * get the wrong answer from DOM and increment by 1 copy the function increment score
+ */
 function incrementWrongAnswer(){
-
+    let oldScore = document.getElementById("incorrect").innerText;
+    document.getElementById("incorrect").innerText = ++oldScore;
 }
 
 function displayAdditionQuestion(operand1, operand2){
