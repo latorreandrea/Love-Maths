@@ -13,17 +13,26 @@ document.addEventListener("DOMContentLoaded",function(){
         })
     }
 
+    document.getElementById("answer-box").addEventListener("keydown",function(event){
+        if (event.key === "Enter"){
+            checkAnswer();
+        }
+    })
+
     runGame("addition");
-    runGame("multiply");
-    runGame("subtract");
+    
 })
 
 /**
  * CREATE A LOOP FOR START GAME
  */
+function runGame(gameType){
+
+document.getElementById("answer-box").value = "";
+document.getElementById("answer-box").focus();
 
  /** CREATE TWO RANDOM NUMBERS BETWEEN 1 AND 25 */
-function runGame(gameType){
+
     let num1 = Math.floor(Math.random()*25)+1;
     let num2 = Math.floor(Math.random()*25)+1;
 
